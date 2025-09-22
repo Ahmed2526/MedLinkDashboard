@@ -1,0 +1,33 @@
+﻿@model RoleVM
+
+@{
+    ViewData["Title"] = "Add Role";
+}
+
+<form asp-action="Create" method="post" class="needs-validation" novalidate>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-7">
+            <!-- wider card on left side -->
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h5 class="mb-0">Add Role</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <hr />
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a href="/Roles/Index" class="btn btn-secondary">Return to Index</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

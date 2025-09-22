@@ -1,0 +1,36 @@
+﻿@model SpecialityVM
+
+@{
+    ViewData["Title"] = "Edit Speciality";
+}
+
+<form method="post" action="/Specialities/Edit/@Model.Id">
+    <input type="hidden" asp-for="Id" />
+    <div class="col-md-8">
+        <div class="card rounded-3">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">Edit Speciality</h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label"></label>
+                            <input class="form-control" asp-for="Name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="/Specialities/Index" class="btn btn-secondary">Return to Index</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

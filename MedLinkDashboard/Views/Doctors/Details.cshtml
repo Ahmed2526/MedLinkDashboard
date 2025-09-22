@@ -1,0 +1,41 @@
+﻿@model DoctorVM
+
+@{
+    ViewData["Title"] = "Doctor Details";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-7 col-lg-6">
+        <div class="card shadow-lg border-0 rounded-3">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">👨‍⚕️ Doctor Details</h5>
+            </div>
+            <div class="card-body p-4">
+                <table class="table table-borderless mb-0">
+                    <tbody>
+                        <tr>
+                            <th class="text-muted" style="width: 35%;">Name</th>
+                            <td>@Model.Name</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">Email</th>
+                            <td>@Model.Email</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">Phone</th>
+                            <td>@Model.Phone</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">Speciality</th>
+                            <td>@Model.Speciality</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer text-end bg-light">
+                <a asp-action="Index" class="btn btn-outline-secondary">⬅ Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
