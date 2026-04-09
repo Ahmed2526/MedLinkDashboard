@@ -78,6 +78,8 @@ namespace MedLinkDashboard.Controllers
             return View(new LoginVM());
         }
 
+
+        //i messed with lockout enabled
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginVM userVM, string? ReturnUrl)
@@ -92,7 +94,7 @@ namespace MedLinkDashboard.Controllers
                 return View(userVM);
             }
 
-            var result = await _signInManager.PasswordSignInAsync(user, userVM.Password, userVM.RememberMe, true);
+            var result = await _signInManager.PasswordSignInAsync(user, userVM.Password, userVM.RememberMe, false);
 
             if (result.IsLockedOut)
             {

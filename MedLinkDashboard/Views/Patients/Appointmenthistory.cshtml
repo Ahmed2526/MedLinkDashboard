@@ -1,0 +1,99 @@
+﻿@using DAL.Enums
+@model IEnumerable<PatientAppointmentVM>
+
+@{
+    ViewData["Title"] = "My Appointments";
+}
+
+<div class="container mt-4">
+
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold">📅 Appointment History</h2>
+        <span class="badge bg-primary fs-6">
+            Total: @Model.Count()
+        </span>
+    </div>
+
+    <!-- Card -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Doctor</th>
+                            <th>Clinic</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th class="text-end">Price</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="7" class="text-center py-4 text-muted">
+                                    No appointments found.
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="fw-semibold">@item.Id</td>
+
+                                    <td>
+                                        <div class="fw-semibold">@item.Doctor</div>
+                                        <small class="text-muted">@item.Patient</small>
+                                    </td>
+
+                                    <td>@item.Clinic</td>
+
+                                    <td>
+                                        @item.Day.ToString("dd MMM yyyy")
+                                    </td>
+
+                                    <td>
+                                        @item.AppointmentStart.ToString("hh\\:mm")
+                                        -
+                                        @item.AppointmentEnd.ToString("hh\\:mm")
+                                    </td>
+
+                                    <td>
+                                        @switch (item.Status)
+                                        {
+                                            case AppointmentStatus.bending:
+                                                <span class="badge bg-warning text-dark">Pending</span>
+                                                break;
+                                            case AppointmentStatus.Done:
+                                                <span class="badge bg-success">Confirmed</span>
+                                                break;
+                                            case AppointmentStatus.canceled:
+                                                <span class="badge bg-danger">Cancelled</span>
+                                                break;
+                                            case AppointmentStatus.Paid:
+                                                <span class="badge bg-secondary">Completed</span>
+                                                break;
+                                        }
+                                    </td>
+
+                                    <td class="text-end fw-semibold">
+                                        @(item.Price.HasValue ? $"{item.Price.Value:C}" : "-")
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

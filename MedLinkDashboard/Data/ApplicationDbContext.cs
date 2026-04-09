@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using DAL.Models;
 using MedLinkDashboard.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,11 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<Product> Products { get; set; }
 
     public virtual DbSet<Speciality> Specialities { get; set; }
+
+    public virtual DbSet<Appointment> Appointments { get; set; }
+
+    public virtual DbSet<Clinic> Clinics { get; set; }
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Data Source=db15734.public.databaseasp.net;Initial Catalog=db15734;Persist Security Info=True;User ID=db15734;Password=7i_K!4ApRe5@;Encrypt=True;trust server certificate=true");

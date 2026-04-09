@@ -1,16 +1,22 @@
-﻿using MedLinkDashboard.IRepository;
+﻿using MedLinkDashboard.Data;
+using MedLinkDashboard.IRepository;
 using MedLinkDashboard.Models;
 using MedLinkDashboard.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace MedLinkDashboard.Controllers
 {
     public class PatientsController : Controller
     {
         private readonly IRepository<Patient> _Patientrepository;
-        public PatientsController(IRepository<Patient> Patientrepository)
+        private readonly ApplicationDbContext _context;
+
+        public PatientsController(IRepository<Patient> Patientrepository, ApplicationDbContext context)
         {
             _Patientrepository = Patientrepository;
+            _context = context;
         }
 
         [HttpGet]
@@ -47,6 +53,24 @@ namespace MedLinkDashboard.Controllers
             return View(vm);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Appointmenthistory(int id)
+        {
+            var data = await _context.Appointments.Where(e => e.PatientId == id).Select(e => new PatientAppointmentVM()
+            {
+                Id = e.Id,
+                Patient = e.Patient.Name,
+                Doctor = e.Doctor.FirstName + " " + e.Doctor.LastName,
+                Clinic = e.Clinic.Name,
+                Day = e.Day,
+                AppointmentStart = e.AppointmentStart,
+                AppointmentEnd = e.AppointmentEnd,
+                Status = e.Status,
+                Price = e.Price
+            }).ToListAsync();
+
+            return View(data);
+        }
 
 
     }

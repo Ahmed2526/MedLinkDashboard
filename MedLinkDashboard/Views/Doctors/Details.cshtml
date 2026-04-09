@@ -6,36 +6,160 @@
 
 <div class="row justify-content-center">
     <div class="col-md-7 col-lg-6">
-        <div class="card shadow-lg border-0 rounded-3">
-            <div class="card-header bg-primary text-white">
-                <h5 class="mb-0">👨‍⚕️ Doctor Details</h5>
+        <div class="card shadow-lg border-0 rounded-4 doctor-card">
+            <!-- Header with Gradient -->
+            <div class="doctor-card-header">
+                <div class="d-flex align-items-center gap-4">
+                    <div class="doctor-icon-wrapper">
+                        <i class="bi bi-person-fill-check"></i>
+                    </div>
+                    <div>
+                        <p class="doctor-subtitle mb-2">Healthcare Provider</p>
+                        <h4 class="doctor-name mb-1">@Model.Name</h4>
+                        <p class="doctor-title mb-0">Licensed Medical Professional</p>
+                    </div>
+                </div>
             </div>
+
+            <!-- Body with Details -->
             <div class="card-body p-4">
-                <table class="table table-borderless mb-0">
-                    <tbody>
-                        <tr>
-                            <th class="text-muted" style="width: 35%;">Name</th>
-                            <td>@Model.Name</td>
-                        </tr>
-                        <tr>
-                            <th class="text-muted">Email</th>
-                            <td>@Model.Email</td>
-                        </tr>
-                        <tr>
-                            <th class="text-muted">Phone</th>
-                            <td>@Model.Phone</td>
-                        </tr>
-                        <tr>
-                            <th class="text-muted">Speciality</th>
-                            <td>@Model.Speciality</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <!-- Email -->
+                <div class="detail-item">
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="detail-icon">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <p class="detail-label">Email</p>
+                            <p class="detail-value">@Model.Email</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone -->
+                <div class="detail-item">
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="detail-icon">
+                            <i class="bi bi-telephone-fill"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <p class="detail-label">Phone</p>
+                            <p class="detail-value">@Model.Phone</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speciality -->
+                <div class="detail-item">
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="detail-icon">
+                            <i class="bi bi-hospital"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <p class="detail-label">Speciality</p>
+                            <p class="detail-value">@Model.Speciality</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-footer text-end bg-light">
-                <a asp-action="Index" class="btn btn-outline-secondary">⬅ Back to List</a>
+
+            <!-- Footer -->
+            <div class="card-footer bg-light border-top py-3">
+                <a asp-action="Index" class="btn btn-primary rounded-3 px-4 py-2">
+                    <i class="bi bi-arrow-left me-2"></i> Back to List
+                </a>
             </div>
         </div>
     </div>
 </div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+<style>
+    .doctor-card {
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .doctor-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .doctor-card-header {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        padding: 2rem;
+        color: white;
+    }
+
+    .doctor-icon-wrapper {
+        font-size: 2.5rem;
+        width: 3.5rem;
+        height: 3.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 0.75rem;
+        flex-shrink: 0;
+    }
+
+    .doctor-subtitle {
+        font-size: 0.85rem;
+        opacity: 0.9;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .doctor-name {
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: -0.5px;
+    }
+
+    .doctor-title {
+        font-size: 0.95rem;
+        opacity: 0.85;
+        font-weight: 500;
+    }
+
+    .detail-item {
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .detail-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .detail-icon {
+        font-size: 1.25rem;
+        color: #0d6efd;
+        width: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .detail-label {
+        font-size: 0.75rem;
+        color: #6c757d;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
+    }
+
+    .detail-value {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #212529;
+        margin: 0;
+    }
+</style>
 
